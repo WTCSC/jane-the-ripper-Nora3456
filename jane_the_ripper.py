@@ -1,37 +1,49 @@
 import hashlib
+clean_words = set()
 
-# Create an MD5 hash
-password = "password123"
-hash_object = hashlib.md5(password.encode())
-hash_hex = hash_object.hexdigest()
-
-print(hash_hex) 
-
-
-
-def process_word(word):
-
-    return f"Processed: {word.upper()}"
-
-def process_wordlist(filepath):
-
+def process_wordlist(path_to_hash):
     try:
-        with open(filepath, 'r') as file:
+        with open(path_to_hash, 'r') as file:
             for line in file:
+                password = line.strip()
+                hash_object = hashlib.md5(password.encode())
+                hash_hex = hash_object.hexdigest()
+                return hash_hex     
+    except ValueError:
+        print("error")
 
-                words = line.strip().split() 
-                for word in words:
-                    result = process_word(word)
-                    print(result)
-    except FileNotFoundError:
-        print(f"Error: The file '{file}' was not found.")
-    except Exception as e:
-        print(f"An error occurred: {e}")
+def check_matching_words(path_to_wordlist                                                                                                                                                           ):
+        with open(path_to_wordlist, 'r') as file2:
+            for line in file2:
+                processed_line_f2 = line.file2.strip().lower()
+                if processed_line_f2 in process_wordlist.file:
+                    print(f"Match found: '{processed_line_f2}'")
+                    return True  # A match was found
+        return False  # No matches found
 
-# Example usage:
-wordlist_file = "wordlist.txt" 
-# Create a dummy wordlist file for demonstration
-with open(wordlist_file, 'w') as f:
-    f.write("wordlist.txt")
 
-process_wordlist(wordlist_file)
+                
+import os
+while True:
+    try: 
+        path_to_hash = input("Enter path to hash file: ")
+        if os.path.isfile(path_to_hash):
+            break
+        else:
+            print(f"The file '{path_to_hash}' does not exist, try again.")
+    except ValueError:
+        print("error")
+
+while True:
+    try:
+        path_to_wordlist = input("Enter path to wordlist file: ")
+
+        if os.path.isfile(path_to_wordlist):
+            break
+        else:
+            print(f"The file '{path_to_wordlist}' does not exist, try again.")
+    except ValueError:
+        print("error")
+
+print(f"{check_matching_words()}")
+
