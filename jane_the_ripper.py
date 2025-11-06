@@ -1,69 +1,64 @@
 import hashlib
-clean_words = set()
+import os
+from collections import defaultdict
+
+
+hash_to_passwords = defaultdict(list)
 
 
 def process_wordlist(filename):
+    """Populate hash_to_passwords with md5(password) -> [password,...]."""
     try:
-        with open(filename, 'r') as file:
+        with open(filename, 'r') as file: #encoding='utf-8', errors='ignore') as fh:
             for line in file:
-                password = line.strip()
-                hash_object = hashlib.md5(password.encode())
-                hash_hex = hash_object.hexdigest()
-                clean_words.add(hash_hex)     
-    except ValueError:
-        print("error")
+                password = line.strip() # rstrip('\n')
+                if not password:
+                    continue
+                hash_hex = hashlib.md5(password.encode('utf-8')).hexdigest()
+                hash_to_passwords[hash_hex].append(password)
+    except Exception as e:
+        print("Error processing wordlist:", e)
 
 
 def check_matching_words(filename):
-    found = False
+    """Read file of hashes (one per line). Print matches and corresponding plaintext(s)."""
+    found_any = False
     try:
-        with open(filename, 'r') as file:
+        with open(filename, 'r') as file: # encoding='utf-8', errors='ignore') as fh:
             for line in file:
-                hash_line = line.strip()
-                if hash_line in clean_words:
-                    print(f"Match found: {hash_line}")
-                    found = True
-                if not found:
-                    print("No matches found.")
+                target = line.strip()
+                if not target:
+                    continue
+                if target in hash_to_passwords:
+                    found_any = True
+                    # There may be multiple plaintexts for a single hash (rare), print them all
+                    for password in hash_to_passwords[target]:
+                        print(f"Password Cracked!: {target} ----> {password}")
+                else:
+                    print(f"Unable to crack the password for: {target}")
+        if not found_any:
+            print("No passwords cracked.")
     except Exception as e:
-        print("Error checking hashes:", 'e')
+        print("Error checking hashes:", e)
 
-"""def check_matching_words(filename):
-    try:
-        with open(filename, 'r') as file:
-            for line in file:
-                processed_line_file = line.strip().lower()
-                if processed_line_file in clean_words:
-                    print(f"Match found: {process_wordlist(filename)} = {processed_line_file}")
-                    found = True
-    except ValueError:
-        print("error")"""
 
-                
-import os
+def ask_file_path(prompt):
+    while True:
+        path = input(prompt).strip()
+        if os.path.isfile(path):
+            return path
+        print(f"File not found: {path}")
 
-# Verifies that the file the user input for their hash file exists
-while True:
-    try: 
-        path_to_hash = input("Enter path to hash file: ")
-        if os.path.isfile(path_to_hash):
-            break
-        else:
-            print(f"The file '{path_to_hash}' does not exist, try again.")
-    except ValueError:
-        print("error")
 
-# Verifies that the file the user input for their wordlist file exists
-while True:
-    try:
-        path_to_wordlist = input("Enter path to wordlist file: ")
+if __name__ == "__main__":
+    print("Hello, welcome to Jane the Ripper, otherwise known as the password cracker!")
 
-        if os.path.isfile(path_to_wordlist):
-            break
-        else:
-            print(f"The file '{path_to_wordlist}' does not exist, try again.")
-    except ValueError:
-        print("error")
 
-check_matching_words(path_to_hash)
-process_wordlist(path_to_wordlist)
+    path_to_hashes = ask_file_path("Enter path to hash file: ")
+
+    path_to_wordlist = ask_file_path("Enter path to wordlist file: ")
+
+    process_wordlist(path_to_wordlist)
+    check_matching_words(path_to_hashes)
+
+
