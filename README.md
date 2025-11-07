@@ -9,7 +9,7 @@
 <strong>Have fun!</strong>
 </p>
 
-<p align="center">🤔🔒🔑💻😳🤔🔒🔑💻😳🤔🔒🔑💻😳🤔🔒🔑💻😳
+<p align="center">🤔🔒🔑💻😳🤔🔒🔑💻😳🤔🔒🔑💻😳🤔🔒🔑💻😳🤔🔒🔑💻😳
 
 ## You might be wondering, how do you use this password cracker?
 
@@ -31,26 +31,33 @@ Below is a detailed step-by-step walkthrough of how to use the password cracker.
 
 
 1. 👋 | The Password Cracker will give you a quick welcome message.
-2. 🤔 | Next, the password cracker will ask you for the path to your **hash** file. This is the file that contains a list of 'stolen' MD5 password hashes. If you are using the pre-given hash file input: "hashes.txt".If you are inputting your own hash file, it must look similar to the pre-given hash file within this repository: **(screenshot of hash file on vs code)**
-- ![Photo of color coded level of GPA.](photo.gif)
-3. 👍👎 | Next, the password cracker will ask you for the path to your **wordlist** file. This is the file that contains a dictionary of common password guesses. If you are using the pre-given wordlist file input: "wordlist.txt". If you are inputting your own wordlist file, it must look similar to the pre-given wordlist file within this repository: **(screenshot of wordlist file on vs code)**
-- ![Photo of color coded level of GPA.](photo.gif)
+ **NOTE: For inputs on step 2 & 3 make sure you list a valid file, you won't be able to proceed if you list a file that does not exist.**
+2. 🤔 | Next, the password cracker will ask you for the path to your **hash** file. This is the file that contains a list of 'stolen' MD5 password hashes. If you are using the pre-given hash file input: "hashes.txt", then press enter.If you are inputting your own hash file, it must look similar to the pre-given hash file within this repository, that file looks like this: 
 
-4. 🔍 | Finally, your code is shown
-5. 🎯 | Your GPA calculator will ask you what your GOAL GPA is. Input your goal GPA, **Remember to only input numbers**, after inputting your goal GPA, press enter. 
-6. 🥳 | If your GOAL GPA is already met, you will get a congratulation message! 
-7. ↕️ | **If step 6 does NOT apply to you**, the code will tell you what your new GPA would be if one class grade per cycle was raised to a 4.0. If your lowest classes grade was raised to 4.0, and your goal GPA still wasn't met, then a message will be displayed saying you will need to improve more than one class. 
+- <img src="hashes.preview.screenshot.png" alt="Screenshot of a hash file example" width="300" height="190"/>
 
-### Want to create your own MD5 hash?
+3. 👍👎 | For the final user required input, the password cracker will ask you for the path to your **wordlist** file. This is the file that contains a dictionary of common password guesses. If you are using the pre-given wordlist file input: "wordlist.txt", then press enter. If you are inputting your own wordlist file, it must look similar to the pre-given wordlist file within this repository, that file looks like this:
+- <img src="wordlist_preview_screenshot.png" alt="Screenshot of a wordlist file example" width="300" height="190"/>
+4. 🔍 | Finally, your code is shown! In your terminal should be a display of all the cracked passwords (if they were able to be cracked)!
 
-I see, you're interested in creating your own MD5 hash...! Here's a simple step by step tutorial on how to do that: 
+
+## Want to create your own MD5 hash?
+
+I see... you're interested in creating your own MD5 hash! Here's a simple step by step tutorial on how to do that: 
 1. Create a new file on VS Code, name it something simple and clear like 'create_MD5_hash.py'.
-2. Input the same code used in this image: **(Image of vs code and file)**
-3. Alter the information where the reference uses '#' (hastags). 
+2. Input the same code used in this image: 
+- <img src="create_hash_screenshot.png" alt="Screenshot reference code to create an MD5 hash" width="350" height="100"/>
+3. Alter the information where the comments (# | hashtags) ask you to **replace** the information with your own words. 
+ 
 4. Press the play icon (▶️) to run the script in the terminal!
 5. View your hashed password in your terminal!
 
+## Test cases
+### Below is instructions on how the test cases run!
 
+##### (Sections of test casing)
+ 
+1. (include test cases heree)
 
 <h2 align="center">Happy Password Cracking!</h2>
  
