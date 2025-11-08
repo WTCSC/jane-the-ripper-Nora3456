@@ -1,7 +1,7 @@
 [![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=21366962)
 
 <h1 align="center">Jane The Ripper</h1>
-<h4 align="center">Otherwise known as... The Password cracker!</h4>
+<h4 align="center">Otherwise known as... The Password Cracker!</h4>
 
 <p align="center"> This program allows you to potentially crack passwords! After using the program, you might be influenced to create a stronger, less common password...so use at your own risk!
 
@@ -55,9 +55,11 @@ I see... you're interested in creating your own MD5 hash! Here's a simple step b
 ## Test cases
 ### Below is instructions on how the test cases run!
 
-##### (Sections of test casing)
- 
-1. (include test cases heree)
+##### There are 2 test cases, that each perform tests to make sure the code runs smoothly!
+
+1. Tests to make sure the user input for hash and wordlist files repeats untill a valid, existing file is input.
+2. Tests to make sure the output MD5 hash string has 32 characters. 
+
 
 <h2 align="center">Happy Password Cracking!</h2>
  
